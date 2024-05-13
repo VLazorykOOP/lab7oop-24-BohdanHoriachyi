@@ -1,96 +1,111 @@
-﻿/*#include <iostream>
-#include <cstring>
-template <typename T>
-void swapFirstMinMax(T arr[], int size) {
-    if (size <= 1) return;
+//ZAVDANIA 1 i 2
 
-    int minIndex = 0;
-    int maxIndex = 0;
-
-    for (int i = 1; i < size; ++i) {
-        if (arr[i] < arr[minIndex]) minIndex = i;
-        if (arr[i] > arr[maxIndex]) maxIndex = i;
-    }
-
-    T temp = arr[minIndex];
-    arr[minIndex] = arr[maxIndex];
-    arr[maxIndex] = temp;
-}
-
-int main() {
-
-    int intArray[] = { 3, 8, 1, 6, 2 };
-    int sizeInt = sizeof(intArray) / sizeof(intArray[0]);
-
-    swapFirstMinMax(intArray, sizeInt);
-
-    std::cout << "Swapped integer array: ";
-    for (int i = 0; i < sizeInt; ++i) {
-        std::cout << intArray[i] << " ";
-    }
-    std::cout << std::endl;
-
-
-    const char* strArray[] = { "apple", "orange", "banana", "grape", "kiwi" };
-    int sizeStr = sizeof(strArray) / sizeof(strArray[0]);
-
-    swapFirstMinMax(strArray, sizeStr);
-
-    std::cout << "Swapped string array: ";
-    for (int i = 0; i < sizeStr; ++i) {
-        std::cout << strArray[i] << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
-}*/
-
-//ZAVDANIA 2
-//
 //#include <iostream>
-//#include <cstring> // Для використання strcmp
+//#include <cstring>
+//#include <algorithm>
 //
-//template <typename T>
-//void swapFirstMinMax(T arr[], int size) {
-//    if (size <= 1) return; // Якщо масив порожній або містить тільки один елемент, виходимо
-//
+//template<typename T>
+//void swapMinMax(T arr[], int size) {
+//    if (size <= 1) return;
 //    int minIndex = 0;
 //    int maxIndex = 0;
-//
-//    // Знаходимо індекси першого мінімального та першого максимального елементів
 //    for (int i = 1; i < size; ++i) {
-//        if (arr[i] < arr[minIndex]) minIndex = i;
-//        if (arr[i] > arr[maxIndex]) maxIndex = i;
+//        if (arr[i] < arr[minIndex])
+//            minIndex = i;
+//        if (arr[i] > arr[maxIndex])
+//            maxIndex = i;
 //    }
+//    std::swap(arr[minIndex], arr[maxIndex]);
+//}
 //
-//    // Обмін значень між першим мінімальним та першим максимальним елементами
-//    T temp = arr[minIndex];
-//    arr[minIndex] = arr[maxIndex];
-//    arr[maxIndex] = temp;
+//template<>
+//void swapMinMax<char*>(char* arr[], int size) {
+//    if (size <= 1) return;
+//    int minIndex = 0;
+//    int maxIndex = 0;
+//    for (int i = 1; i < size; ++i) {
+//        if (strcmp(arr[i], arr[minIndex]) < 0)
+//            minIndex = i;
+//        if (strcmp(arr[i], arr[maxIndex]) > 0)
+//            maxIndex = i;
+//    }
+//    std::swap(arr[minIndex], arr[maxIndex]);
+//}
+//
+//template<typename T>
+//void insertionSort(T arr[], int size) {
+//    for (int i = 1; i < size; ++i) {
+//        T key = arr[i];
+//        int j = i - 1;
+//        while (j >= 0 && arr[j] > key) {
+//            arr[j + 1] = arr[j];
+//            j = j - 1;
+//        }
+//        arr[j + 1] = key;
+//    }
+//}
+//
+//template<>
+//void insertionSort<char*>(char* arr[], int size) {
+//    for (int i = 1; i < size; ++i) {
+//        char* key = arr[i];
+//        int j = i - 1;
+//        while (j >= 0 && strcmp(arr[j], key) > 0) {
+//            arr[j + 1] = arr[j];
+//            j = j - 1;
+//        }
+//        arr[j + 1] = key;
+//    }
 //}
 //
 //int main() {
-//    // Приклад з числовим масивом
-//    int intArray[] = { 3, 8, 1, 6, 2 };
-//    int sizeInt = sizeof(intArray) / sizeof(intArray[0]);
+//    int arrInt[] = { 5, 3, 9, 1, 7 };
+//    int sizeInt = sizeof(arrInt) / sizeof(arrInt[0]);
 //
-//    swapFirstMinMax(intArray, sizeInt);
-//
-//    std::cout << "Swapped integer array: ";
+//    std::cout << "Before swapMinMax:\n";
 //    for (int i = 0; i < sizeInt; ++i) {
-//        std::cout << intArray[i] << " ";
+//        std::cout << arrInt[i] << " ";
 //    }
 //    std::cout << std::endl;
 //
-//    // Приклад з масивом рядків (char*)
-//    const char* strArray[] = { "apple", "orange", "banana", "grape", "kiwi" };
-//    int sizeStr = sizeof(strArray) / sizeof(strArray[0]);
+//    swapMinMax(arrInt, sizeInt);
 //
-//    swapFirstMinMax(strArray, sizeStr);
+//    std::cout << "After swapMinMax:\n";
+//    for (int i = 0; i < sizeInt; ++i) {
+//        std::cout << arrInt[i] << " ";
+//    }
+//    std::cout << std::endl;
 //
-//    std::cout << "Swapped string array: ";
-//    for (int i = 0; i < sizeStr; ++i) {
-//        std::cout << strArray[i] << " ";
+//    insertionSort(arrInt, sizeInt);
+//
+//    std::cout << "After insertionSort:\n";
+//    for (int i = 0; i < sizeInt; ++i) {
+//        std::cout << arrInt[i] << " ";
+//    }
+//    std::cout << std::endl;
+//
+//    char* arrChar[] = { (char*)"banana", (char*)"apple", (char*)"orange", (char*)"grape", (char*)"pineapple" };
+//    int sizeChar = sizeof(arrChar) / sizeof(arrChar[0]);
+//
+//    std::cout << "Before swapMinMax:\n";
+//    for (int i = 0; i < sizeChar; ++i) {
+//        std::cout << arrChar[i] << " ";
+//    }
+//    std::cout << std::endl;
+//
+//    swapMinMax(arrChar, sizeChar);
+//
+//    std::cout << "After swapMinMax:\n";
+//    for (int i = 0; i < sizeChar; ++i) {
+//        std::cout << arrChar[i] << " ";
+//    }
+//    std::cout << std::endl;
+//
+//    insertionSort(arrChar, sizeChar);
+//
+//    std::cout << "After insertionSort:\n";
+//    for (int i = 0; i < sizeChar; ++i) {
+//        std::cout << arrChar[i] << " ";
 //    }
 //    std::cout << std::endl;
 //
@@ -289,5 +304,3 @@ int main() {
     return 0;
 }
 */
-
-
